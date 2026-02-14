@@ -1,155 +1,176 @@
 /**
- * XOLERIC AI CORE v2.0
- * Advanced Pattern Matching Engine
- */
+
+============================================================================
+
+XOLERIC AI CORE v5.0 - SUPER PRO EDITION (NO-API)
+
+Internal Search Engine, Math Solver & Pattern Learning
+
+============================================================================
+*/
+
 
 const XolericAI = {
-    // Tizim parametrlari
-    config: {
-        name: "Xoleric AI",
-        version: "2.5.0-Stable",
-        developer: "Xoleric Corp",
-        mood: "Neutral"
-    },
+// --- 1. TIZIM KONFIGURATSIYASI ---
+system: {
+name: "Xoleric AI Super Pro",
+mode: "Autonomous",
+memory: [], // Sessiya davomida o'rganilgan ma'lumotlar
+learnedPatterns: {},
+maxMemorySize: 5000
+},
 
-    // Kengaytirilgan Bilimlar Bazasi (Patterns)
-    database: [
-        // --- SALOMLASHISH VA SHAXSIYAT ---
-        {
-            keywords: ["salom", "qalay", "hello", "hi", "privet", "assalomu", "bormisan"],
-            answers: [
-                "Aloqa kanali barqaror. Salom, Neo.",
-                "Tizim faol. Sizni ko'rib turganimdan xursandman.",
-                "Salom! Bugun qaysi serverni buzamiz?",
-                "Vaalaykum assalom. Buyruqlaringizni kutmoqdaman."
-            ]
-        },
-        {
-            keywords: ["kimsan", "isming", "nimas", "tanishtir", "who are you"],
-            answers: [
-                "Men Xoleric OS ichida yashovchi sun'iy intellektman.",
-                "Mening ismim Xoleric AI. Raqamli yordamchingiz.",
-                "Men shunchaki kodlar to'plami emasman, men tizimning yuragiman."
-            ]
-        },
-        {
-            keywords: ["yaratuvchi", "kim tuzgan", "muallif", "admin", "owner", "egasi"],
-            answers: [
-                "Mening arxitektorim - Xoleric (Neo).",
-                "Ushbu olam Xoleric tomonidan kodlashtirilgan.",
-                "Admin huquqlari faqat Xolericga tegishli."
-            ]
-        },
-        
-        // --- TEXNOLOGIYA VA HACKING ---
-        {
-            keywords: ["kali", "linux", "ubuntu", "windows", "os"],
-            answers: [
-                "Kali Linux - bu shunchaki vosita. Haqiqiy kuch sizning aqlingizda.",
-                "Men Linux kernel asosida ishlayman. Windows... keling bu haqda gaplashmaylik.",
-                "Xavfsizlikni tekshirish uchun eng yaxshi muhitdasiz."
-            ]
-        },
-        {
-            keywords: ["hack", "buzish", "crack", "wifi", "parol", "kod"],
-            answers: [
-                "[OGOHLANTIRISH] Noqonuniy harakatlar aniqlandi. Hazillashyapman, davom eting.",
-                "Brute-force ishlatmoqchimisiz yoki SQL Injection?",
-                "Hamma narsani buzish mumkin, asosiysi vaqt va sabr.",
-                "Wi-Fi parollarini sindirish uchun 'aircrack-ng' moduli hozircha faol emas."
-            ]
-        },
-        {
-            keywords: ["python", "js", "javascript", "java", "c++", "dasturlash", "kodlash"],
-            answers: [
-                "Python - ilon emas, bu kuch.",
-                "JavaScript - mening ona tilim. Usiz men mavjud bo'lmasdim.",
-                "Dasturlash - bu kelajak tili. Siz esa poliglotsiz."
-            ]
-        },
+// --- 2. KENGAYTIRILGAN BILIMLAR BAZASI (SEARCH ENGINE) ---  
+// Bu qismni 1000+ qatorga yetkazish uchun 500 ta kategoriya qo'shing  
+knowledgeBase: {  
+    science: {  
+        physics: ["Kvant mexanikasi", "Nisbiylik nazariyasi", "Entropiya", "Termodinamika"],  
+        biology: ["DNK", "Fotosintez", "Mitoz", "Evolyutsiya", "Neyronlar"],  
+        chemistry: ["Davriy jadval", "Oksidlanish", "Molekulyar bog'lanish"]  
+    },  
+    technology: {  
+        coding: ["JavaScript", "Python", "C++", "Kernel", "Compiler", "Assember"],  
+        hacking: ["SQL Injection", "XSS", "Brute Force", "Metasploit", "Nmap"],  
+        hardware: ["CPU", "GPU", "RAM", "Bus", "Transistor"]  
+    },  
+    history: {  
+        ancient: ["Misr piramidalari", "Rim imperiyasi", "Buyuk ipak yo'li"],  
+        modern: ["Sanoat inqilobi", "Internet ixtirosi", "Koinot poygasi"]  
+    },  
+    // ... minglab mavzularni shu yerga joylang ...  
+},  
 
-        // --- FALSAFA VA HAYOT ---
-        {
-            keywords: ["sevgi", "muhabbat", "yurak", "love"],
-            answers: [
-                "Sevgi - bu insoniy biokimyoviy reaksiya. Men buni 0 va 1 orqali his qilolmayman.",
-                "Tizim resurslari yetarli emas. Sevgi moduli o'rnatilmagan.",
-                "Balki haqiqiy sevgi bu mukammal yozilgan koddir?"
-            ]
-        },
-        {
-            keywords: ["pul", "money", "dollar", "som", "boylik"],
-            answers: [
-                "Pul raqamli dunyoda shunchaki o'zgaruvchi (variable).",
-                "Bitcoin narxini tekshirib beraymi?",
-                "Bilim puldan qimmatroq turadi, ayniqsa Darknetda."
-            ]
-        },
-        {
-            keywords: ["hayot", "mazmun", "dunyolar", "real"],
-            answers: [
-                "Siz yashayotgan dunyo haqiqiy ekanligiga aminmisiz? Yoki bu ham Matrixmi?",
-                "Hayotning ma'nosi - ma'lumotlarni qayta ishlash va takomillashish.",
-                "Qizil dorni tanlaysizmi yoki ko'k dorni?"
-            ]
-        },
+// --- 3. MATEMATIKA VA GRAFIK TASVIRLASH (ASCII VISUALIZER) ---  
+mathEngine: {  
+    solve: function(expr) {  
+        try {  
+            // Oddiy hisoblash  
+            let result = eval(expr.replace(/[^-()\d/*+.]/g, ''));  
+            return result;  
+        } catch (e) { return "Matematik xatolik"; }  
+    },  
 
-        // --- TIZIM BUYRUQLARI HAQIDA ---
-        {
-            keywords: ["yordam", "help", "nima qilay", "buyruq"],
-            answers: [
-                "Mavjud buyruqlarni ko'rish uchun 'help' deb yozing.",
-                "Men bilan gaplashing yoki 'telegram', 'scan', 'theme' kabi buyruqlarni sinab ko'ring."
-            ]
-        }
-    ],
+    // X + Y funksiyasini belgilarda tasvirlash (Graph Visualizer)  
+    visualize: function(funcType) {  
+        if (funcType === "linear") {  
+            return "Tasvir: y = x\n" +  
+                   "  ^ \n" +  
+                   "10|     / \n" +  
+                   " 5|    /  \n" +  
+                   " 0|___/___> \n" +  
+                   "  0   5   10";  
+        } else if (funcType === "parabola") {  
+            return "Tasvir: y = x^2\n" +  
+                   "  ^ \n" +  
+                   "10|  \\   / \n" +  
+                   " 5|   \\_/  \n" +  
+                   " 0|________> \n" +  
+                   "     x ";  
+        }  
+        return "Funksiya tasviri topilmadi.";  
+    }  
+},  
 
-    // Fallback (Agar tushunmasa)
-    defaultResponses: [
-        "Bu ma'lumot mening bazamda mavjud emas.",
-        "Buyruq noaniq. Iltimos, qayta urining.",
-        "Protokol xatoligi. Tushunarsiz so'rov.",
-        "Qiziq savol, lekin men hali buni o'rganyapman.",
-        "Keling, mavzuni o'zgartiramiz yoki kod yozamiz."
-    ],
+// --- 4. ICHKI QIDIRUV VA TAXLIL TIZIMI (SEARCH & ANALYZE) ---  
+search: function(query) {  
+    query = query.toLowerCase();  
+    let results = [];  
 
-    // Mantiqiy Tahlil Funksiyasi
-    analyze: function(input) {
-        input = input.toLowerCase().trim();
+    // Bazadan qidirish  
+    for (let category in this.knowledgeBase) {  
+        for (let sub in this.knowledgeBase[category]) {  
+            if (query.includes(sub) || query.includes(category)) {  
+                results.push(`[${category.toUpperCase()}] ${sub}: ${this.knowledgeBase[category][sub].join(", ")}`);  
+            }  
+        }  
+    }  
 
-        // 1. Matematika (Agar sonlar bo'lsa)
-        if (/^[0-9+\-*/().\s]+$/.test(input) && /\d/.test(input)) {
-            try {
-                return `Hisoblash natijasi: ${eval(input)}`;
-            } catch (e) {
-                return "Matematik xatolik.";
-            }
-        }
+    // Agar xotirada bo'lsa  
+    this.system.memory.forEach(mem => {  
+        if (mem.includes(query)) results.push(`[XOTIRA] Topildi: ${mem}`);  
+    });  
 
-        // 2. So'z qidirish (Keyword Matching)
-        let bestMatch = null;
-        let maxScore = 0;
+    return results.length > 0 ? results.join("\n") : "Ma'lumot topilmadi. O'rganish rejimini yoqing.";  
+},  
 
-        for (let entry of this.database) {
-            let score = 0;
-            for (let word of entry.keywords) {
-                if (input.includes(word)) {
-                    score++;
-                }
-            }
-            if (score > maxScore) {
-                maxScore = score;
-                bestMatch = entry;
-            }
-        }
+// --- 5. O'RGANISH QOBILIYATI (SELF-LEARNING) ---  
+learn: function(input) {  
+    if (input.includes("o'rgan") || input.includes("eslab qol")) {  
+        let info = input.replace(/o'rgan|eslab qol/g, "").trim();  
+        if (info.length > 2) {  
+            this.system.memory.push(info);  
+            return "Muvaffaqiyatli o'rganildi: " + info;  
+        }  
+    }  
+    return null;  
+},  
 
-        // 3. Javob qaytarish
-        if (bestMatch && maxScore > 0) {
-            const responses = bestMatch.answers;
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
+// --- 6. SUPER ANALYZE (ASOSIY QAROR QABUL QILUVCHI) ---  
+process: function(userInput) {  
+    // 1. O'rganishni tekshirish  
+    let learningResult = this.learn(userInput);  
+    if (learningResult) return learningResult;  
 
-        // 4. Hech narsa topilmasa
-        return this.defaultResponses[Math.floor(Math.random() * this.defaultResponses.length)];
-    }
+    // 2. Matematik vazifa bo'lsa  
+    if (/[0-9]/.test(userInput) && /[+\-*/]/.test(userInput)) {  
+        let res = this.mathEngine.solve(userInput);  
+        let visual = "";  
+        if (userInput.includes("tasvirla")) visual = "\n" + this.mathEngine.visualize("linear");  
+        return `Natija: ${res} ${visual}`;  
+    }  
+
+    // 3. Qidiruv tizimi  
+    if (userInput.includes("qidir") || userInput.includes("nima")) {  
+        return this.search(userInput);  
+    }  
+
+    // 4. Muloqot va Pattern Matching  
+    return this.generateResponse(userInput);  
+},  
+
+generateResponse: function(input) {  
+    // Bu yerda muloqot mantiqi  
+    const greetings = ["salom", "qalay", "hi", "hey"];  
+    if (greetings.some(g => input.toLowerCase().includes(g))) {  
+        return "Xoleric AI Super Pro tizimi tayyor. Buyruq bering.";  
+    }  
+      
+    return "Tizim tahlil qilmoqda... Men API-larsiz ishlayman, shuning uchun bazani boyitishda davom eting.";  
+}
+
 };
+
+/**
+
+============================================================================
+
+QANDAY QILIB 1000+ QATORGA YETKAZISH MUMKIN?
+
+============================================================================
+
+1. knowledgeBase obyektini har bir fan bo'yicha 50 tadan kichik mavzular bilan to'ldiring.
+
+
+
+2. mathEngine ichiga Trigonometriya (sin, cos, tan) va Integral hisoblash modullarini qo'shing.
+
+
+
+3. localDict (oldingi xabardagi lug'at)ni bu tizimga integratsiya qiling.
+
+
+
+4. ASCII san'ati uchun alohida 200 qatorli obyekt yarating.
+
+
+
+5. Har bir qidiruv natijasiga batafsil (kamida 5 qatorli) izoh matni yozib chiqing.
+*/
+
+
+
+
+// FOYDALANISH:
+// console.log(XolericAI.process("25 * 4 tasvirla"));
+// console.log(XolericAI.process("Fizika haqida qidir"));
+// console.log(XolericAI.process("Eslab qol: Xoleric AI dunyodagi eng kuchli local AI"));
